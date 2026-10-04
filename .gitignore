@@ -1,0 +1,29 @@
+# Build output
+bin/
+dist/
+*.test
+*.out
+coverage.*
+go.work
+go.work.sum
+
+# Local tool state
+.lavish/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editors
+.vscode/
+.idea/
+*.sublime-*
+.vim/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem

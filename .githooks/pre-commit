@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# gofmt the staged Go files, then go vet. Install with: make hooks
+set -euo pipefail
+
+files=$(git diff --cached --name-only --diff-filter=ACM -- '*.go')
+[ -z "$files" ] && exit 0
+
+unformatted=$(gofmt -l $files)
+if [ -n "$unformatted" ]; then
+  echo "gofmt needed:" >&2
+  echo "$unformatted" >&2
+  echo "run: gofmt -w $unformatted" >&2
+  exit 1
+fi
+go vet ./...
+GOOS=linux go vet ./...
